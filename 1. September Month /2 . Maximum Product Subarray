@@ -1,10 +1,10 @@
-Given an integer array nums, find a 
-subarray
- that has the largest product, and return the product.
+ # Maximum Product Subarray
+
+
+<h3>
+Given an integer array nums, find a subarray that has the largest product, and return the product.
 
 The test cases are generated so that the answer will fit in a 32-bit integer.
-
- 
 
 Example 1:
 
@@ -17,4 +17,34 @@ Input: nums = [-2,0,-1]
 Output: 0
 Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
 
+</h3>
+
+[Problem Link] :- (https://leetcode.com/problems/maximum-product-subarray/description/)
+
+**Solution :-**
+
+```
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+
+    int n = nums.size();
+    int maxProduct1=nums[0];
+    int minProduct=nums[0];
+    int maxProductSubarray = nums[0];
+
+    for(int i=1;i<n;i++){
+        if (nums[i] < 0){
+            swap(maxProduct1,minProduct);
+        }
+
+        maxProduct1 = max(nums[i], maxProduct1 * nums[i]);
+        minProduct = min(nums[i], minProduct * nums[i]);
+
+        maxProductSubarray = max(maxProductSubarray, maxProduct1);
+    }
+    return maxProductSubarray;  
+}};
+
+```
 
